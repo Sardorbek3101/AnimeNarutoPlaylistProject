@@ -1,0 +1,109 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'img/image_2022-07-20_18-45-02.png' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% comment %} <script src="https://code-ya.jivosite.com/widget/xqPmtnV9MJ" async=""></script>
+    <link rel="stylesheet" href="https://code.jivosite.com/css/54feddb/widget.css" class="jv-css"> {% endcomment %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    {% block title %}<title>Document</title>{% endblock title %}
+</head>
+<body>
+<div class="wrapper">
+    <header>
+        <div id="nav-bar" class="nav-bar">
+            <div class="nav-logo">
+                <a href="{% url 'home' %}">
+                    <img src="{% static 'img/image_2022-07-20_18-45-02.png' %}" alt="">
+                    <h1>AnimeFan</h1>
+                </a>
+            </div>
+            <div class="nav-lists">
+                <ul>
+                    <li><a href="{% url 'home' %}">Домой</a></li>
+                    <li><a href="{% url 'ninja_list' %}">Персонажи</a></li>
+                    <li><a href="{% url 'jutsu_list' %}">Техники</a></li>
+                    <li><a href="{% url 'about' %}">О нас</a></li>
+                </ul>
+            </div>
+            <form class="d-flex" role="search" method="" action="{% url 'ninja_list' %}">{% csrf_token %}
+                <input name="search" class="form-control me-2 input-search" type="search" placeholder="Search" aria-label="Search">
+            </form>
+            {% if user.is_authenticated %}
+            <div class="dropdown text-end">
+                <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    {% if user.photo %}
+                    <img src="{{user.photo.url}}" alt="мдо" width="32" height="32" class="rounded-circle">
+                    {% else %}
+                    <img src="{% static 'img/OIP.jpg' %}" alt="мдо" width="32" height="32" class="rounded-circle">
+                    {% endif %}
+                </a>
+                <ul class="dropdown-menu text-small dropdown-menu-dark">
+                {% if user.is_staff %}
+                  <li><a class="dropdown-item" href="{% url 'slide_create' %}"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Добавить слайд</font></font></a></li>
+                  <li><a class="dropdown-item" href="{% url 'ninja_create' %}"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Добавить персонажа</font></font></a></li>
+                  <li><a class="dropdown-item" href="{% url 'jutsu_create' %}"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Добавить технику</font></font></a></li>
+                {% endif %}
+                  <li><a class="dropdown-item" href="{% url 'profile' user.pk %}"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Профиль</font></font></a></li>
+                  {% comment %} <li><a class="dropdown-item" href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Настройки</font></font></a></li> {% endcomment %}
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="{% url 'logout' %}"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">выход</font></font></a></li>
+                </ul>
+              </div>
+            {% else %}
+            <div class="log">
+                <a role="button" class="btn btn-outline-light" href="{% url 'login' %}">вход</a>
+                <a role="button" class="btn btn-warning" href="{% url 'signup' %}">Регистрация</a>
+            </div>
+            {% endif %}
+        </div>
+        {% block header %}{% endblock header %}
+    </header>
+    {% block br %}
+    <div class="br"></div>
+    {% endblock br %}
+    {% block main %}
+    <main>
+        {% block content %}{% endblock content %}
+    </main>
+    {% endblock main %}
+    {% block footer %}
+    <footer>
+        <div class="foot-osn">
+            <div class="foot-links">
+                <h3>Страницы</h3>
+                <ul>
+                    <li><a href="{% url 'home' %}">Домой</a></li>
+                    <li><a href="{% url 'ninja_list' %}">Персонажи</a></li>
+                    <li><a href="{% url 'jutsu_list' %}">Техники</a></li>
+                    <li><a href="{% url 'about' %}">О нас</a></li>
+                </ul>
+            </div>
+            <div class="foot-icons">
+                <h3>Связаться с нами</h3>
+                <ul>
+                    <li><a href="mailto:oscodeer@gmail.com"><i class="fa-solid fa-envelope"></i></a></li>
+                    <li><a target="true" href="https://www.facebook.com/profile.php?id=100084144935908"><i class="fa-brands fa-facebook"></i></a></li>
+                    <li><a target="true" href="https://github.com/Sardorbek3101"><i class="fa-brands fa-github"></i></a></li>
+                    <li><a target="true" href="https://www.instagram.com/olimjonov_s_/"><i class="fa-brands fa-instagram"></i></a></li>
+                    <li><a href="https://t.me/Uzb_Coder_001"><i class="fa-brands fa-telegram"></i></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="razrab">
+            <p>&copy; Разработчик: Олимжонов Сардорбек</p>
+        </div>
+    </footer>
+    {% endblock footer %}
+    <div class="vverx">
+        <a href="#nav-bar">&uarr;</a>
+    </div>
+</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/830ef3127f.js" crossorigin="anonymous"></script>
+</html>

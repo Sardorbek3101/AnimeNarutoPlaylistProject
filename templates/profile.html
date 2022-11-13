@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>Профиль</title>
+{% endblock title %}
+{% block content %}
+<div class="card-profile">
+    <div class="glav-carg">
+        <h1>Профиль</h1>
+        <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+        <h4>@{{ user.username }}</h4>
+        {% if object.photo %}
+        <img src="{{object.photo.url}}" alt="">
+        {% else %}
+        <a href="{% url 'change' user.pk %}">Добавить фото</a>
+        {% endif %}
+    </div>
+    <div class="card-bodyy">
+        <h5>Адрес электронной почты : {{ user.email }}</h5>
+        {% if user.phone_number %}
+        <h5>Номер телефона : {{ user.phone_number }}</h5>
+        {% else %}
+        <h5>Номер телефона :  <a href="">Добавить</a></h5>
+        {% endif %}
+    </div>
+    <div class="prof-buttons">
+        <a  href="{% url 'change' user.pk %}" role="button" class="btn btn-success">Изменить данные</a>
+        <a class="btn btn-danger" role="button" href="{% url 'delete' user.pk %}">Удалить аккаунт</a>
+    </div>
+</div>
+{% endblock content %}

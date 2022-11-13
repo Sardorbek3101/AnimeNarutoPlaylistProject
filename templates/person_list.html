@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>AnimeFan Персонажи</title>
+{% endblock title %}
+{% block content %}
+
+<div class="row row-cols-1 row-cols-md-2 g-4">
+{% for ninja in object_list %}
+<div class="col">
+    <div class="card">
+        <a href="{% url 'detail' ninja.pk %}">
+        <img src="{{ ninja.photo.url }}" class="card-img-top" alt="">
+        <div class="card-body" style="color:black">
+        <h5 class="card-title" style="color:black">{{ ninja.name }}</h5></a>
+        <p class="card-text" style="color:black">{{ ninja.role }}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">О нём (ней) : {{ ninja.about | slice:":190" }}<a href=""></a></li>
+            <li class="list-group-item">Техники : {{ ninja.jutsu | slice:":190" }}  </li>
+        </ul>
+        {% if user.is_staff %}
+        <div class="card-body" style="color:black">
+            <a href="{% url 'detail' ninja.pk %}" class="card-link">подробнее..</a>
+        </div>
+        {% endif %}
+        <div class="card-footer">
+            <small class="text-muted">Автор : {{ ninja.author }} | {{ ninja.date }}</small>
+        </div>
+    </div>
+</div>
+{% endfor %}
+</div>
+{% endblock content %}

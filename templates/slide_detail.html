@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+<title>{{ object.title }}</title>
+{% endblock title %}
+{% block main %}
+<div class="slider-main">
+<div id="carouselExampleDark{{ object.pk }}" class="carousel carousel slide" data-bs-ride="carousel">
+  <h1 class="team_num">{{ object.title }}</h1>
+<div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleDark{{ object.pk }}" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleDark{{ object.pk }}" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    {% if object.img3 %}
+    <button type="button" data-bs-target="#carouselExampleDark{{ object.pk }}" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    {% endif %}
+    {% if object.img4 %}
+    <button type="button" data-bs-target="#carouselExampleDark{{ object.pk }}" data-bs-slide-to="3" aria-label="Slide 4"></button>
+    {% endif %}
+    {% if object.img5 %}
+    <button type="button" data-bs-target="#carouselExampleDark{{ object.pk }}" data-bs-slide-to="4" aria-label="Slide 5"></button>
+    {% endif %}
+</div>
+<div class="carousel-inner">
+    <div class="carousel-item active" data-bs-interval="8000">
+    <img src="{{ object.img1.url }}" class="d-block w-100" alt="...">
+    <div class="carousel-caption d-none d-md-block">
+        <h5 style="color:white">{{ object.name1 }}</h5>
+        <p>{{object.body1}}</p>
+    </div>
+    </div>
+    <div class="carousel-item" data-bs-interval="8000">
+    <img src="{{ object.img2.url }}" class="d-block w-100" alt="...">
+    <div class="carousel-caption d-none d-md-block">
+        <h5 style="color:white">{{ object.name2 }}</h5>
+        <p>{{object.body2}}</p>
+    </div>
+    </div>
+    {% if object.img3 %}
+    <div class="carousel-item" data-bs-interval="8000">
+      <img src="{{ object.img3.url }}" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5 style="color:white">{{ object.name3 }}</h5>
+        <p>{{object.body3}}</p>
+      </div>
+      </div>
+    {% endif %}
+    {% if object.img4 %}
+    <div class="carousel-item" data-bs-interval="8000">
+      <img src="{{ object.img4.url }}" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5 style="color:white">{{ object.name4 }}</h5>
+        <p>{{object.body4}}</p>
+      </div>
+      </div>
+    {% endif %}
+    {% if object.img5 %}
+    <div class="carousel-item" data-bs-interval="8000">
+      <img src="{{ object.img5.url }}" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5 style="color:white">{{ object.name5 }}</h5>
+        <p>{{object.body5}}</p>
+      </div>
+      </div>
+    {% endif %}
+</div>
+<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark{{ object.pk }}" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+</button>
+<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark{{ object.pk }}" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+</button>
+</div>
+<div class="detail-link">
+<a class="btn btn-primary" href="{% url 'slide_update' object.pk %}">Изменить</a>
+<a class="btn btn-danger" href="{% url 'slide_delete' object.pk %}">Удалить</a>
+</div>
+</div>
+</div>
+{% endblock main %}

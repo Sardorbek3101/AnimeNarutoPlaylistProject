@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>{{ object.name }}</title>
+{% endblock title %}
+{% block content %}
+
+<div class="card">
+    <img src="{{ object.photo.url }}" class="card-img-top" alt="">
+    <div class="card-body" style="color:black">
+    <h5 class="card-title" style="color:black">{{ object.name }}</h5>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">О нём (ней) : {{ object.about }}<a href=""></a></li>
+        <li class="list-group-item">Использует : {{ object.ninja }}  </li>
+    </ul>
+    {% if user.is_staff %}
+    <div class="card-body" style="color:black">
+        <a href="{% url 'jutsu_update' object.pk %}" class="card-link">Изменить данные</a>
+        <a href="{% url 'jutsu_delete' object.pk %}" class="card-link">Удалить технику</a>
+    </div>
+    {% endif %}
+    <div class="card-footer">
+        <small class="text-muted">Автор : {{ object.author }} | {{ object.date }}</small>
+    </div>
+</div>
+
+{% endblock content %}
