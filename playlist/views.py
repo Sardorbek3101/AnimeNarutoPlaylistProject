@@ -1,13 +1,19 @@
 from django.contrib.auth.mixins import LoginRequiredMixin , UserPassesTestMixin
+from django.shortcuts import render
+from django.views import View
 from django.views.generic.edit import DeleteView , UpdateView , CreateView
 from django.views.generic import ListView , DetailView
 from .models import PlaylistPersonModel
 from django.urls import reverse_lazy
 
 # Create your views here.
-class NinjaListView(ListView):
-    model = PlaylistPersonModel
-    template_name = 'person_list.html'
+class NinjaListView(View):
+    def get(self, request):
+        slids = PlaylistPersonModel.objects.all().order_by('id')
+        search_query = request.GET.get('q', '')
+        if search_query:
+            slids = slids.filter(name__icontains=search_query)
+        return render(request, 'person_list.html',{"object_list":slids, "search":search_query})
 
 class NinjaDetailView(DetailView):
     model = PlaylistPersonModel

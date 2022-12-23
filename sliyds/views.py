@@ -1,13 +1,20 @@
 from django.contrib.auth.mixins import LoginRequiredMixin , UserPassesTestMixin
+from django.shortcuts import render
+from django.views import View
 from django.views.generic.edit import DeleteView , UpdateView , CreateView
 from django.views.generic import ListView , DetailView
 from .models import SlideModel
 from django.urls import reverse_lazy
 
 # Create your views here.
-class SlideListView(ListView):
-    model = SlideModel
-    template_name = 'home.html'
+class SlideListView(View):
+    def get(self, request):
+        slids = SlideModel.objects.all().order_by('id')
+        search_query = request.GET.get('q', '')
+        if search_query:
+            slids = slids.filter(title__icontains=search_query)
+        return render(request, 'home.html',{"object_list":slids, "search":search_query})
+    
 
 class SlideDetailView(LoginRequiredMixin , UserPassesTestMixin , DetailView):
     model = SlideModel
@@ -15,6 +22,8 @@ class SlideDetailView(LoginRequiredMixin , UserPassesTestMixin , DetailView):
     
     def test_func(self):
         return self.request.user.is_staff
+    
+
 class SlideCreateView(LoginRequiredMixin , UserPassesTestMixin , CreateView):
     model = SlideModel
     template_name = 'slide_create.html'

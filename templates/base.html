@@ -1,4 +1,7 @@
 {% load static %}
+{% url 'ninja_list' as ninja_list_url %}
+{% url 'jutsu_list' as jutsu_list_url %}
+{% url 'home' as home_url%}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -30,8 +33,14 @@
                     <li><a href="{% url 'about' %}">О нас</a></li>
                 </ul>
             </div>
-            <form class="d-flex" role="search" method="" action="{% url 'ninja_list' %}">{% csrf_token %}
-                <input name="search" class="form-control me-2 input-search" type="search" placeholder="Search" aria-label="Search">
+            <form class="d-flex" role="search" method="get" action="{% if request.path == ninja_list_url %}
+            {{ ninja_list_url }}
+            {% elif request.path == jutsu_list_url %}
+            {{ jutsu_list_url }}
+            {% else %}
+                {{ home_url }}
+            {% endif %}">
+                <input name="q" class="form-control me-2 input-search" type="search" value="{{ search }}" placeholder="Поиск" aria-label="Search">
             </form>
             {% if user.is_authenticated %}
             <div class="dropdown text-end">

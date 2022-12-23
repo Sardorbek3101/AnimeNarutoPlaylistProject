@@ -1,13 +1,19 @@
 from django.contrib.auth.mixins import LoginRequiredMixin , UserPassesTestMixin
+from django.shortcuts import render
+from django.views import View
 from django.views.generic.edit import DeleteView , UpdateView , CreateView
 from django.views.generic import ListView , DetailView
 from .models import PlaylistJutsuModel 
 from django.urls import reverse_lazy
 
 # Create your views here.
-class JutsuListView(ListView):
-    model = PlaylistJutsuModel
-    template_name = 'jutsu_list.html'
+class JutsuListView(View):
+    def get(self, request):
+        slids = PlaylistJutsuModel.objects.all().order_by('id')
+        search_query = request.GET.get('q', '')
+        if search_query:
+            slids = slids.filter(name__icontains=search_query)
+        return render(request, 'jutsu_list.html',{"object_list":slids, "search":search_query})
 
 class JutsuDetailView(DetailView):
     model = PlaylistJutsuModel
