@@ -1,0 +1,306 @@
+*{
+    color: white;
+}
+.nav-bar {
+    display: flex;
+    position: fixed;
+    width: 100%;
+    background-color: #5f9ea05c;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 50px;
+    z-index: 100;
+}
+
+.nav-logo h1 {
+    font-family: cursive;
+    color: antiquewhite;
+}
+
+.nav-logo img {
+    max-width: 100%;
+    width: 35px;
+    border-radius: 30%;
+    margin-right: 25px;
+}   
+
+
+.nav-logo {
+    display: flex;
+}
+.nav-logo a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+}
+
+.nav-lists ul {
+    display: flex;
+    list-style: none;
+    margin: auto;
+}
+
+.nav-lists li {
+    margin: auto 15px;
+}
+
+.nav-lists a {
+    color: white;
+    text-decoration: none;
+}
+.nav-lists a:hover{
+    color:yellowgreen;
+    transition: 0.25s;
+}
+body{
+    background: linear-gradient( rgb(0 0 0 / 50%), rgb(0 0 0 / 50%) ), url("../img/677417.344adc2fa8e7.jpg");
+    background-attachment:fixed;
+    background-size: cover;
+}
+main{
+    margin: 3% 15%;
+}
+.about{
+    text-align: center;
+}
+.team_num{
+    text-align: center;
+}
+.wrapper{
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.slider-main{
+    margin: auto auto 2%;
+}
+.br{
+    height: 80px;
+}
+.h1-link{
+text-decoration: none;
+color: white;
+}
+.h1-link:hover{
+    color: white;
+}
+.detail-link{
+    text-align: center;
+    margin: 2% auto auto;
+}
+.glav-carg {
+    text-align: center;
+    /* background-color: #faebd791; */
+    border-radius: 20px;
+    width: 80%;
+    display: block;
+    border-bottom: solid;
+    margin: auto;
+    padding-bottom: 15px;
+    color: black;
+}
+
+.card-bodyy {
+    text-align: center;
+    margin: auto;
+    /* background-color: #ffe4c4b0; */
+    color: black;
+    padding: 25px 0px 15px 0px;
+    border-bottom: solid;
+    border-radius: 20px;
+    width: 50%;
+}
+
+.prof-buttons {
+    padding: 25px 0px 0px;
+}
+
+.card-profile {
+    background-color: #faebd7a1;
+    border-radius: 20px;
+    text-align: center;
+    padding: 20px 0 25px;
+    margin: 4% auto;
+    width: 80%;
+    font-family: monospace;
+}
+
+.glav-carg img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+}
+
+.card-body{
+    color: black;
+}
+
+footer {
+    background-color: #222222ed;
+    padding: 15px 0;
+    border-radius: 25px 25px 0 0;
+    margin-top: auto;
+}   
+
+.foot-osn {
+    display: flex;
+    /* background-color: black; */
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10%;
+}
+
+.foot-links {
+    text-align: center;
+    align-items: center;
+}
+.foot-links ul {
+    display: flex;
+    list-style: none;
+    /* color: white; */
+}
+.foot-links li {
+    margin: auto 10px;
+}
+.foot-links a {
+    color: white;
+    text-decoration: none;
+}
+.foot-icons {
+    text-align: center;
+}
+.foot-icons ul {
+    display: flex;
+    list-style: none;
+}
+.foot-icons li {
+    margin: auto 10px;
+}
+a {
+    color: var(--bs-link-color);
+    text-decoration: underline;
+}   
+
+.razrab p {
+    text-align: center;
+    margin: 0;
+    padding: 15px 0 0px;
+    font-size: 14px;
+}
+
+.vverx{
+    display: none;
+}
+@media (max-width:980px) {
+    .nav-bar{
+        padding: 0 20px;
+
+    }
+}
+
+@media (max-width:915px) {
+    .nav-logo h1{
+        font-size: 30px;
+    }
+    .br{
+        height: 60px;
+    }
+    .nav-logo img{
+        width: 30px;
+        margin-right: 20px;
+    }
+    .nav-lists li{
+        margin: auto 10px;
+    }
+    .nav-lists a{
+        font-size: 15px;
+    }
+    .input-search{
+        height: 30px;
+        width: 40px;
+    }
+}
+
+@media (max-width:660px) {
+    .nav-bar{
+        display: block;
+        padding: 0;
+        position: inherit;
+    }
+    .vverx {
+        color: white;
+        background-color: #222;
+        position: fixed;
+        right: 10%;
+        display: block;
+        bottom: 10%;
+        opacity: 0.8;
+        padding: 0px 15px;
+    }
+    .vverx a{
+        color: white;
+    }
+    .input-search{
+        max-width: 300px;
+        text-align: center;
+        margin: 0;
+        justify-content: center;
+    }
+    .foot-links ul{
+        justify-content: center;
+        padding: 0;
+    }
+    .foot-icons ul{
+        padding: 0;
+        justify-content: center;
+    }
+    .foot-osn{
+        display: block;
+        padding: 0;
+    }
+    .card-bodyy{
+        width: 100%;
+    }
+    .log{
+        margin-top: 15px;
+        text-align: center;
+    }
+    .nav-logo{
+        justify-content: center;
+    }
+    .nav-lists ul{
+        justify-content: center;
+        padding: 0;
+    }
+    .d-flex{
+        margin-top: 10px;
+        justify-content: center;
+        text-align: center;
+    }
+    .br{
+        height: 10px;
+    }
+    .text-end{
+        margin-top: 15px;
+        display: flex;
+        justify-content: center;
+    }
+}
+@media (max-width:491px) {
+    .card-profile{
+        width: 100%;
+    }
+    main{
+        margin: 0;
+    }
+}
+@media (max-width:320px) {
+    .foot-links ul{
+        display: block;
+    }
+    .foot-icons ul{
+        display: block;
+    }
+}

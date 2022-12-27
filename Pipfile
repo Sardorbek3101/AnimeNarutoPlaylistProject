@@ -8,6 +8,8 @@ django = "*"
 django-crispy-forms = "*"
 django-phonenumber-field = {extras = ["phonenumbers"], version = "*"}
 pillow = "*"
+environs = {version = "==8.0.0", extras = ["django"]}
+whitenoise = "*"
 
 [dev-packages]
 
